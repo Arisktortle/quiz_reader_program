@@ -13,13 +13,22 @@ def read_questions(filename="quiz_data.txt"):
     blocks = content.strip().split("#QUESTION_") #reads the file for a question header and stores it
     questions = []
     
-    for block in blocks:
+    for block in blocks: #skips empty blocks
         if not block.strip():
             continue
         lines = block.splitlines()
         question_text = ""  
-        choices = {}  #stores the choices
-        correct = "" #stores the correct answer
+        choices = {}  #storage of the choices
+        correct = "" #storage of the correct answer
+        
+        for line in lines: #Locate for the line with the question
+            line = line.strip()
+            if line.startswith("Question"):
+                question_text = line.split(":", 1)[1].strip()
+            elif any(line.startswith(f"{opt})") for opt in "abcd"): #locates the choices in the file
+                choices[line[0]] = line[3:].strip()
+            elif line.startswith("ANSWER:"): #locates the correct answer and stores it, converts in lower cases
+                correct = line.split(":", 1)[1].strip().lower()
         
 #read the question, options abcd, and the correct answer
 #store the questions to a list
