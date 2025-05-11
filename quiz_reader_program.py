@@ -34,6 +34,11 @@ def read_questions(filename="quiz_data.txt"):
             })
 
     return questions
+
+if __name__ == "__main__":
+    questions = read_questions() #calls the function to read the question in the file, if none the program exits
+    if not questions:
+        exit()
         
 
 #shuffle the order of the questions
