@@ -1,3 +1,5 @@
+import random #random library for getting a random question
+
 def read_questions(filename="quiz_data.txt"):
     try:
         with open(filename, "r", encoding="utf-8") as f:
@@ -40,11 +42,13 @@ if __name__ == "__main__":
     if not questions:
         exit()
         
+    question = random.choice(questions) #call a random question for the user to answer
+    print("\n" + question["question"])
+    for opt, text in question["choices"].items():
+        print(f"{opt}) {text}")
 
-#shuffle the order of the questions
-#show the first question
-#prompt the user for an answer
-#verify if the answer is correct 
-#loop until all questions are answered
-#count the correct answers
-#output the final score
+    answer = input("\nYour answer (a, b, c, d): ").lower().strip() #prompts the user to input an answer for the random question
+    if answer == question["correct"]: #checks if the answer is correct
+        print("Your Answer is correct.")
+    else:
+        print(f"Your Answer is wrong. The correct answer is {question['correct']}) {question['choices'][question['correct']]}")
