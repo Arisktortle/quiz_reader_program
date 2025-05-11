@@ -13,6 +13,14 @@ def read_questions(filename="quiz_data.txt"):
     blocks = content.strip().split("#QUESTION_") #reads the file for a question header and stores it
     questions = []
     
+    for block in blocks:
+        if not block.strip():
+            continue
+        lines = block.splitlines()
+        question_text = ""  
+        choices = {}  #stores the choices
+        correct = "" #stores the correct answer
+        
 #read the question, options abcd, and the correct answer
 #store the questions to a list
 #shuffle the order of the questions
