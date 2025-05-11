@@ -1,7 +1,3 @@
-#locate and open the quiz file
-#read the question, options abcd, and the correct answer
-#store the questions to a list
-
 def read_questions(filename="quiz_data.txt"):
     try:
         with open(filename, "r", encoding="utf-8") as f:
@@ -29,9 +25,17 @@ def read_questions(filename="quiz_data.txt"):
                 choices[line[0]] = line[3:].strip()
             elif line.startswith("ANSWER:"): #locates the correct answer and stores it, converts in lower cases
                 correct = line.split(":", 1)[1].strip().lower()
+                
+        if question_text and choices and correct: #if there is no error found within the file and blocks of code, it is stored.
+            questions.append({
+                "question": question_text,
+                "choices": choices,
+                "correct": correct
+            })
+
+    return questions
         
-#read the question, options abcd, and the correct answer
-#store the questions to a list
+
 #shuffle the order of the questions
 #show the first question
 #prompt the user for an answer
