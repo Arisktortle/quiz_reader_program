@@ -1,4 +1,7 @@
 #locate and open the quiz file
+#read the question, options abcd, and the correct answer
+#store the questions to a list
+
 def read_questions(filename="quiz_data.txt"):
     try:
         with open(filename, "r", encoding="utf-8") as f:
@@ -6,7 +9,10 @@ def read_questions(filename="quiz_data.txt"):
     except FileNotFoundError:
         print("File not found.")
         return []
-
+    
+    blocks = content.strip().split("#QUESTION_") #reads the file for a question header and stores it
+    questions = []
+    
 #read the question, options abcd, and the correct answer
 #store the questions to a list
 #shuffle the order of the questions
